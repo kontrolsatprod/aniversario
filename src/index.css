@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Scrollbar Track */
+/*.red-scrollbar::-webkit-scrollbar-track {*/
+/*    background: #c70407; !* Light background for the track *!*/
+/*}*/
+
+/*!* Scrollbar Thumb *!*/
+/*.red-scrollbar::-webkit-scrollbar-thumb {*/
+/*    background-color: rgb(187, 16, 16); !* Red color for the scrollbar thumb *!*/
+/*    border-radius: 5px; !* Rounded corners for the thumb *!*/
+/*    border: 1px solid #f5f5f5; !* Space around thumb *!*/
+/*}*/
+
+/*!* Scrollbar Width *!*/
+/*.red-scrollbar::-webkit-scrollbar {*/
+/*    width: 12px; !* Width of the scrollbar *!*/
+/*}*/
+
+body {
+    /* Set the background color with high priority */
+    /*background-color: white !important;*/
+
+    /*!* Add the background image with high priority *!*/
+    /*background-image: url('https://www.kontrolsat.com/modules/r_blacksat/views/img/dia-namorados/bg.png') !important;*/
+    /*background-position: center center !important;*/
+    /*background-repeat: no-repeat !important;*/
+    /*background-size: cover !important;*/
+    /* Additional background properties for better presentation */
+}
+
+
+.lp-nav-scope .lp-nav-link {
+    color: var(--nav-text, #ffffff);
+}
+
+.lp-nav-scope .lp-nav-link:hover {
+    color: var(--nav-text-hover, #ff3b30);
+}
