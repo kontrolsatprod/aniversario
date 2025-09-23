@@ -1,67 +1,74 @@
-import {useState} from "react";
-import {NewsletterBlockConfig} from "../../../api/config.jsx";
+import { useState } from "react";
+import { useConfig } from "../../../config/configContext.jsx";
 
-const Newsletter = () => {
-    const [formData, setFormData] = useState({
-        FNAME: "",
-        EMAIL: "",
-    });
+export default function Newsletter() {
+  const cfg = useConfig() || {};
+  const n = cfg.NewsletterBlockConfig || {};
 
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData({...formData, [name]: value});
-    };
+  const [formData, setFormData] = useState({ FNAME: "", EMAIL: "" });
+  const onChange = (e) =>
+    setFormData((s) => ({ ...s, [e.target.name]: e.target.value }));
 
-    return (
-        <div className="w-100 flex flex-col items-center justify-between py-2 mt-6"
-             style={{backgroundColor: NewsletterBlockConfig.bgColor}}>
-            <h1 className="text-xl uppercase font-black pb-1 px-2 text-center text-white">
-                Subscreve a <span className="">newsletter</span>{" "}
-            </h1>
-            <h1 className="text-xl uppercase font-black pb-1 px-2 text-center text-white">
-                Para não peder ofertas
-            </h1>
-            <form
-                action="https://kontrolsat.us14.list-manage.com/subscribe/post?u=9c2c13a48978e3a75c02338dd&amp;id=4fcb3b857a&amp;f_id=00b92ae1f0"
-                id="mc-embedded-subscribe-form"
-                method="post"
-                target="_blank"
-                className="flex flex-col w-100 gap-1 justify-center h-auto mt-2"
-            >
-                <input
-                    type="text"
-                    name="FNAME"
-                    value={formData.FNAME}
-                    onChange={handleChange}
-                    className="text-sm py-1 ps-3 rounded-sm uppercase text-black mx-3 text-center active:border-none focus:border-none"
-                    placeholder="Nome"
-                />
-                <input
-                    type="email"
-                    name="EMAIL"
-                    value={formData.EMAIL}
-                    onChange={handleChange}
-                    className="text-sm py-1 ps-3 rounded-sm uppercase text-black mx-3 text-center active:border-none focus:border-none"
-                    placeholder="Endereço Email"
-                    required
-                />
-                <input
-                    type="hidden"
-                    name="b_9c2c13a48978e3a75c02338dd_4fcb3b857a"
-                    value=""
-                />
-                <input
-                    type="submit"
-                    value="Enviar"
-                    className="py-1 mx-3 uppercase font-black text-sm rounded-sm "
-                    style={{
-                        backgroundColor: NewsletterBlockConfig.btnBgColor,
-                        color: NewsletterBlockConfig.btnTextColor
-                    }}
-                />
-            </form>
-        </div>
-    );
-};
+  return (
+    <section
+      className="w-full flex flex-col items-center justify-between py-4 mt-6 px-3"
+      style={{ backgroundColor: n.bgColor }}
+      aria-labelledby="newsletter-title"
+    >
+      <h1
+        id="newsletter-title"
+        className="text-xl uppercase font-black text-center"
+        style={{ color: n.textColor }}
+      >
+        {n.title}
+      </h1>
+      <h2
+        className="text-xl uppercase font-black text-center"
+        style={{ color: n.textColor }}
+      >
+        {n.subtitle}
+      </h2>
 
-export default Newsletter;
+      <form
+        action={n.formAction}
+        method="post"
+        target="_blank"
+        className="mt-2 w-full max-w-md flex flex-col gap-2"
+      >
+        <input
+          type="text"
+          name="FNAME"
+          value={formData.FNAME}
+          onChange={onChange}
+          className="px-3 py-2 rounded-sm uppercase text-black text-sm text-center outline-none focus:ring-2 focus:ring-white/60"
+          placeholder={n.namePlaceholder}
+          aria-label={n.namePlaceholder}
+        />
+
+        <input
+          type="email"
+          name="EMAIL"
+          value={formData.EMAIL}
+          onChange={onChange}
+          className="px-3 py-2 rounded-sm uppercase text-black text-sm text-center outline-none focus:ring-2 focus:ring-white/60"
+          placeholder={n.emailPlaceholder}
+          required
+          aria-label={n.emailPlaceholder}
+        />
+
+        {/* Honeypot opcional (Mailchimp) */}
+        {n.honeypotName ? (
+          <input type="hidden" name={n.honeypotName} value="" />
+        ) : null}
+
+        <button
+          type="submit"
+          className="py-2 mx-3 uppercase font-black text-sm rounded-sm transition-transform hover:scale-[1.02]"
+          style={{ backgroundColor: n.btnBgColor, color: n.btnTextColor }}
+        >
+          {n.btnLabel}
+        </button>
+      </form>
+    </section>
+  );
+}

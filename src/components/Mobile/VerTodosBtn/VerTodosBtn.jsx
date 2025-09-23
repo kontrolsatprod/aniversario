@@ -1,18 +1,28 @@
-import {VerTodosDescontosConfig} from "../../../api/config.jsx";
+// src/components/shared/VerTodosButton.jsx
+import { useConfig } from "../../../config/configContext";
 
-const VerTodosButton = () => {
-    return (
-        <div className="container w-100 flex items-center text-center justify-center h-24">
-            <a
-                href="https://www.kontrolsat.com/pt/promocoes"
-                className="w-100 py-2 rounded-md text-white font-black text-xl uppercase hover:bg-kontrolsatVerde hover:scale-105 transition duration-300 ease-in-out"
-                style={{backgroundColor: VerTodosDescontosConfig.bgColor, color: VerTodosDescontosConfig.color}}
-                target="_blank"
-            >
-                {VerTodosDescontosConfig.text}
-            </a>
-        </div>
-    );
-};
+export default function VerTodosButton() {
+  const cfg = useConfig() || {};
+  // Adapter: SeeAll -> { text, color, bgColor, href? }
+  const see = cfg.SeeAll || {};
 
-export default VerTodosButton;
+  const text = see.text || "VER TODOS DESCONTOS";
+  const color = see.color || "#ffffff";
+  const bgColor = see.bgColor || "#fa3a3a";
+  const href = see.href || "https://www.kontrolsat.com/pt/promocoes";
+
+  return (
+    <div className="container mx-auto h-24 flex items-center justify-center">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full max-w-xl py-3 font-black text-xl uppercase text-center transition duration-300 ease-in-out hover:scale-105"
+        style={{ backgroundColor: bgColor, color }}
+        aria-label={text}
+      >
+        {text}
+      </a>
+    </div>
+  );
+}

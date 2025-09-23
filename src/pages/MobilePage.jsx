@@ -11,21 +11,21 @@ import Footer from "../components/Mobile/Footer/Footer";
 import VerTodosBtn from "../components/Mobile/VerTodosBtn/VerTodosBtn";
 
 const MobilePage = () => {
-    return (
-        <div>
-            <BrandBar/>
-            <Navbar/>
-            <HeroMobile/>
-            <Title/>
-            <CardsPrecos/>
-            <Menu/>
-            <BannerProduct/>
-            {/*<RandomProductList />*/}
-            {/*<VerTodosBtn />*/}
-            {/*<Newsletter />*/}
-            {/*<Footer />*/}
-        </div>
-    );
+  return (
+    <div>
+      <BrandBar />
+      <Navbar />
+      <HeroMobile />
+      <Title />
+      <CardsPrecos />
+      <Menu />
+      <BannerProduct />
+      <RandomProductList />
+      <VerTodosBtn />
+      <Newsletter />
+      <Footer />
+    </div>
+  );
 };
 
 export default MobilePage;
