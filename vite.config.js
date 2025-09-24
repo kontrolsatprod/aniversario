@@ -1,9 +1,9 @@
-// templates/landing-classica/vite.config.js
+// vite.config.js (raiz)
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-    base: "./",                 // <- IMPORTANTE p/ funcionar em /especial/slug
+    base: "./",
     plugins: [react()],
     root: "src",
     publicDir: "../public",
@@ -12,11 +12,11 @@ export default defineConfig({
         emptyOutDir: true,
         sourcemap: false,
         rollupOptions: {
-            input: "/src/main.jsx",
             output: {
-                entryFileNames: "app.js",                 // nomes fixos
-                assetFileNames: (chunk) => {
-                    if (chunk.name && chunk.name.endsWith(".css")) return "app.css";
+                entryFileNames: "app.js",
+                assetFileNames: (asset) => {
+                    // quando o Vite extrai CSS, o nome costuma vir como "style.css"
+                    if (asset.name && asset.name.endsWith(".css")) return "app.css";
                     return "assets/[name][extname]";
                 },
                 chunkFileNames: "chunks/[name].js",

@@ -1,20 +1,18 @@
+<!-- src/index.html -->
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="https://www.kontrolsat.com/img/favicon.ico?1715622139" rel="icon" type="image/svg+xml"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta name="keywords" content="Aniversario Kontrolsat, Presentes, Descontos Kontrolsat"/>
-    <meta
-            content=""/>
-    <title>Aniversário Kontrolsat | Promoções e Descontos | Kontrolsat</title>
-</head>
-<body>
-<!-- Aqui montamos o React E passamos o mock -->
-<div id="lp-root" data-api="/mock/landing-classica.json"></div>
-<script type="module" src="/main.jsx"></script>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Landing</title>
+  </head>
+  <body>
+    <div
+      id="lp-root"
+      data-api="/mock/landing-classica.json"
+    ></div>
 
-
-</body>
+    <!-- IMPORTANTE: relativo ao root da build (root=src) -->
+    <script type="module" src="./main.jsx"></script>
+  </body>
 </html>
